@@ -5,10 +5,12 @@ import authRoute from "./routes/auth.js";
 import hotelRoute from "./routes/hotels.js";
 import roomRoute from "./routes/rooms.js";
 import userRoute from "./routes/users.js";
+import cookieParser from "cookie-parser";
 
 const app = express();
+app.use(cookieParser());
 app.use(express.json());
-dotenv.config();
+dotenv.config();  
 
 app.listen(7777, () => {
   console.log("Server is running on port: 7777");
