@@ -6,19 +6,19 @@ import {
   getHotel,
   updateHotel,
 } from "../controllers/hotels.js";
-import Hotel from "../models/Hotel.js";
+import { verifyToken, verifyUser, verifyAdmin } from "../utils/verifyToken.js";
 
 const router = express.Router();
 
-//CREATE
-router.post("/", createHotel);
-//UPDATE
-router.put("/:id", updateHotel);
-//DELETE
-router.delete("/:id", deleteHotel);
+//CREATE AND GET ALL
+router.route("/")
+  .post(verifyAdmin, createHotel)
+  .get(getAllHotel);
+//UPDATE AND DELETE
+router.route("/:id")
+  .put(verifyUser, updateHotel)
+  .delete(verifyUser, deleteHotel);
 //GET
 router.get("/find/:id", getHotel);
-//GET ALL
-router.get("/", getAllHotel);
 
 export default router;
