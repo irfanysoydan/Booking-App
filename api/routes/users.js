@@ -10,7 +10,8 @@ import { verifyAdmin } from "../utils/verifyToken.js";
 const router = express();
 
 //UPDATE AND DELETE
-router.route("/:id")
+router
+  .route("/:id")
   .put(verifyAdmin, updateUser)
   .delete(verifyAdmin, deleteUser);
 //GET
